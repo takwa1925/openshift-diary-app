@@ -1,0 +1,54 @@
+[
+    {
+        "customization": {
+            "paperColor": [
+                {
+                    "isActive": true,
+                    "name": "Red",
+                    "value": "#ff0000",
+                    "price": 1.8
+                },
+                {
+                    "isActive": false,
+                    "name": "Blue",
+                    "value": "#0000ff",
+                    "price": 0.5
+                }
+            ],
+            "coverTheme": [
+                {
+                    "isActive": true,
+                    "name": "Jungle Book",
+                    "image": "bg2.jpg",
+                    "price": 5
+                },
+                {
+                    "isActive": false,
+                    "name": "Spiderman - Homecoming",
+                    "image": "bg1.jpg",
+                    "price": 7.5
+                }
+            ],
+            "paperType": [
+                {
+                    "isActive": true,
+                    "name": "plain",
+                    "price": 0
+                },
+                {
+                    "isActive": true,
+                    "name": "lined",
+                    "price": 0
+                },
+                {
+                    "isActive": true,
+                    "name": "dotted",
+                    "price": 0
+                }
+            ],
+            "hasCoverText": true
+        },
+        "name": "Diary",
+        "basePrice": 10
+    }
+]
