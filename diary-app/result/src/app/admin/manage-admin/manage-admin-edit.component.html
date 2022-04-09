@@ -1,0 +1,15 @@
+<div class="editor-container" mat-dialog-content>
+    <mat-form-field>
+      <input class="input" matInput [(ngModel)]="data.fullname" placeholder="Name">
+    </mat-form-field>
+    <mat-form-field>
+      <input class="input" matInput [(ngModel)]="data.email" placeholder="Email">
+    </mat-form-field>
+    <mat-form-field>
+      <input class="input" matInput [(ngModel)]="data.isActive" placeholder="Is Active">
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Update</button>
+  </div>

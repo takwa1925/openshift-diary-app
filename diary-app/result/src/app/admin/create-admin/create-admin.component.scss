@@ -1,0 +1,28 @@
+.create-admin-card {
+    margin: 50px auto;
+    width: 30vw;
+    min-width: 400px;
+}
+
+.create-admin-card mat-form-field {
+    width: 100%;
+}
+
+.create-admin-card mat-card-actions button {
+    width: calc(100% - 18px);
+    margin: auto;
+    display: block;
+}
+
+.create-admin-card mat-card-actions .register {
+    margin: 10px;
+}
+
+.create-admin-card mat-card-actions .register div {
+    display: inline-block;
+    width: 50%;
+}
+
+.mat-card-title {
+    font-size: 16px;
+}

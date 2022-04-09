@@ -1,0 +1,64 @@
+<mat-grid-list cols="12" rowHeight="15vh" *ngIf="diaryCustomization">
+    <mat-grid-tile
+        [colspan]="4"
+        [rowspan]="6">
+        <img style="max-width: 70%;" src="../../../assets/diary.svg" >
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="4" [rowspan]="1">
+        <div style="margin: 30px;width: 100%;">
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Diary Name</mat-label>
+                <input matInput [disabled]="true" [(ngModel)]="diaryCustomization.name">
+            </mat-form-field>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="4" [rowspan]="1">
+        <div style="margin: 30px;width: 100%;">
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Base Price</mat-label>
+                <input matInput type="number" [(ngModel)]="diaryCustomization.basePrice">
+            </mat-form-field>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="4" [rowspan]="2">
+        <div class="customization-box">
+            <div class="customization-header">Paper Color</div>
+            <div class="customization-body">
+              <mat-chip-list>
+                <app-color-selector [data]="paperColor" (update)="updateCustomization()" (deleteColor)="deleteColor(i)" *ngFor="let paperColor of diaryCustomization.customization.paperColor; index as i" ></app-color-selector>
+                <mat-icon aria-label="icon" (click)="addNewColorPalette()" style="vertical-align: bottom;cursor: pointer; margin: 15px 0;">add_circle_outline</mat-icon>
+              </mat-chip-list>
+            </div>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="4" [rowspan]="2">
+        <div class="customization-box">
+            <div class="customization-header">Cover Theme</div>
+            <div class="customization-body">
+                <mat-chip-list>
+                    <app-cover-theme [data]="coverTheme" (update)="updateCustomization()" (deleteTheme)="deleteTheme(i)" *ngFor="let coverTheme of diaryCustomization.customization.coverTheme; index as i"></app-cover-theme>
+                    <mat-icon aria-label="icon" (click)="addNewCoverTheme()" style="vertical-align: bottom;cursor: pointer; margin: 15px 0;">add_circle_outline</mat-icon>
+                </mat-chip-list>
+            </div>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="4" [rowspan]="2">
+        <div class="customization-box">
+            <div class="customization-header">Paper Type</div>
+            <div class="customization-body">
+                <mat-chip-list>
+                    <app-paper-type [data]="coverTheme" (update)="updateCustomization()" *ngFor="let coverTheme of diaryCustomization.customization.paperType; index as i"></app-paper-type>
+
+                </mat-chip-list>
+            </div>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="4" [rowspan]="2">
+        <div class="customization-box">
+            <div class="customization-header">Cover Text</div>
+            <div style="text-align: center; margin: 12vh;">
+                <mat-checkbox [(ngModel)]="diaryCustomization.customization.hasCoverText" (ngModelChange)="updateCustomization()">Allow custom cover text</mat-checkbox>
+            </div>
+        </div>
+    </mat-grid-tile>
+  </mat-grid-list>

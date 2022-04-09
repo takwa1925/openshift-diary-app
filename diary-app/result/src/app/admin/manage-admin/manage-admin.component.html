@@ -1,0 +1,57 @@
+<mat-card class="manage-admin-card">
+  <mat-card-header>
+      <mat-card-title>MANAGE USERS</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+
+          <table mat-table [dataSource]="dataSource">
+            
+            <!-- Name Column -->
+            <ng-container matColumnDef="fullname">
+              <th mat-header-cell *matHeaderCellDef> Name </th>
+              <td mat-cell *matCellDef="let element"> {{element.fullname}} </td>
+            </ng-container>
+        
+            <!-- Email Column -->
+            <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef> Email </th>
+              <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+            </ng-container>
+        
+            <!-- Creation Date Column -->
+            <ng-container matColumnDef="createdAt">
+              <th mat-header-cell *matHeaderCellDef> Date of Creation </th>
+              <td mat-cell *matCellDef="let element"> {{element.createdAt | date}} </td>
+            </ng-container>
+
+            <!-- Role Column -->
+            <ng-container matColumnDef="role">
+              <th mat-header-cell *matHeaderCellDef> Role </th>
+              <td mat-cell *matCellDef="let element"> {{ element.roles.length == 0 || element.roles[0]==""?'Customer' : 'Admin' }} </td>
+            </ng-container>
+
+            <!-- Orders Column -->
+            <ng-container matColumnDef="orders">
+              <th mat-header-cell *matHeaderCellDef> Orders </th>
+              <td mat-cell *matCellDef="let element"> 
+                <a *ngIf="!element.roles[0]" (click)="navigateToOrders(element)" class="list-orders">List Orders</a>
+                <span *ngIf="element.roles[0]"> - </span>
+              </td>
+            </ng-container>
+
+            <!-- isActive Column -->
+            <ng-container matColumnDef="isActive">
+              <th mat-header-cell *matHeaderCellDef> Active </th>
+              <td mat-cell *matCellDef="let element">
+                <mat-slide-toggle   color="primary" [checked]="element.isActive" (change)="toggleHandler($event.checked, element)"></mat-slide-toggle>
+              </td>
+            </ng-container>
+
+            
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+            </tr>
+
+          </table>
+  </mat-card-content>
+</mat-card>

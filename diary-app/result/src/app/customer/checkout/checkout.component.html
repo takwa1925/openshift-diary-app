@@ -1,0 +1,125 @@
+<!-- ValueFullForm : {{ fullForm.value | json }} -->
+
+<mat-card class="checkout-card">
+  <mat-card-content>
+    <div>
+      <h3>Select delivery option</h3>
+    </div>
+    <mat-radio-group aria-label="Select delivery option" [(ngModel)]="deliveryOption">
+      <mat-radio-button value=1>Standard&nbsp;&nbsp;</mat-radio-button>
+      <mat-radio-button value=2>Express</mat-radio-button>
+    </mat-radio-group>
+    <div class="express_msg">
+      <mat-label *ngIf="deliveryOption == 2" ><i>Incurs $5 extra charge.</i></mat-label>
+    </div>
+    <form *ngIf="addressForm" [formGroup]="addressForm" [ngClass]="{'has-error': (email.errors
+      || fullname.touched || fullname.dirty || address.errors || phone.errors )}">
+      <div>
+        <h3 *ngIf="deliveryOption == 1"> Standard Delivery Address </h3>
+        <h3 *ngIf="deliveryOption == 2"> Express Delivery Address</h3>
+
+      </div>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Full name</mat-label>
+          <input matInput type="text" placeholder="John Doe" formControlName="fullname" name="fullname" />
+          <mat-error *ngIf="fullname.errors?.required">Invalid full name.</mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput type="text" placeholder="john@gmail.com" formControlName="email" name="email" />
+          <mat-error *ngIf="email.errors?.required || email.errors?.email ">Invalid email address</mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Phone number</mat-label>
+          <input matInput type="text" placeholder="04123123123" formControlName="phone" name="phoneNumber" />
+          <mat-error *ngIf="phone.errors?.required">Invalid phone number.</mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Address</mat-label>
+          <input matInput type="text" placeholder="123 Brunswick St. Fitzroy, VIC 3010" formControlName="address"
+            name="address" />
+          <mat-error *ngIf="address.errors?.required">Invalid address.</mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+
+    <div>
+      <div>
+        <h3>Payment</h3>
+      </div>
+
+      <mat-radio-group aria-label="Select Payment option" [(ngModel)]="paymentOptions">
+        <div class="creditCardFormBlock">
+          <mat-radio-button value=1>Credit Card</mat-radio-button>
+          <form *ngIf='creditCardForm && paymentOptions==1' [formGroup]="creditCardForm" [ngClass]="{'has-error': (cardnumber.errors
+            || securitycode.errors || expirydate.errors )}">
+            <div>
+              <h3>Fill Credit Card Details</h3>
+            </div>
+            <div>
+              <mat-form-field appearance="outline">
+                <mat-label>Card Number</mat-label>
+                <input matInput type="number" placeholder="1234 1234 1234 1234" formControlName="cardnumber"
+                  name="cardnumber" />
+                <mat-error *ngIf="cardnumber.errors?.required || cardnumber.errors?.maxlength">Invalid card number.
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div>
+              <mat-form-field appearance="outline">
+                <mat-label>Security Code</mat-label>
+                <input matInput type="number" placeholder="CCV" formControlName="securitycode" name="securitycode" />
+                <mat-error *ngIf="securitycode.errors?.required">Invalid security code.</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div>
+              <mat-form-field appearance="outline">
+                <mat-label>Expiry</mat-label>
+                <input matInput type="text" placeholder="mm/yy (02/2022)" formControlName="expirydate"
+                  name="expirydate" />
+                <mat-error *ngIf="expirydate.errors?.required">Invalid expiry date.</mat-error>
+              </mat-form-field>
+            </div>
+          </form>
+        </div>
+
+        <div class="paypalFormBlock">
+          <mat-radio-button value=2>PayPal</mat-radio-button>
+          <form *ngIf="paypalForm && paymentOptions==2" [formGroup]="paypalForm" [ngClass]="{'has-error': (paypalemail.errors
+            || password.errors )}">
+            <div>
+              <h3>Fill PayPal Details</h3>
+            </div>
+            <div>
+              <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput type="text" placeholder="john@gmail.com" formControlName="email" name="email" />
+                <mat-error *ngIf="paypalemail.errors?.required || paypalemail.errors?.email">Invalid email.</mat-error>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" placeholder="Password" formControlName="password" />
+                <mat-error *ngIf="password.errors?.required">Invalid password.</mat-error>
+              </mat-form-field>
+            </div>
+          </form>
+        </div>
+
+      </mat-radio-group>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="checkout()" color="primary">Confirm and Pay</button>
+  </mat-card-actions>
+</mat-card>

@@ -1,0 +1,55 @@
+.example-icon {
+  padding: 0 14px;
+}
+
+.login-container {
+  padding-top: 20vh;
+}
+
+.signup-container {
+  padding-top: 12vh;
+}
+
+.login-card {
+  width: 30vw;
+  min-width: 400px;
+  margin: auto;
+  box-shadow: -1px 4px 28px 0px rgba(0,0,0,0.75);
+}
+
+.login-card:hover {
+  box-shadow: -20px 32px 160px 20px rgba(0,0,0,0.75);
+}
+
+.login-card mat-form-field {
+  width: 100%;
+}
+
+.login-card mat-card-actions button {
+  width: calc( 100% - 18px );
+  margin: auto;
+  display: block;
+}
+
+.login-card mat-card-actions .register {
+  margin: 10px;
+}
+
+.login-card mat-card-actions .register div {
+  display: inline-block;
+  width: 50%;
+}
+
+.mat-card-title {
+  font-size: 16px;
+}
+
+
+.mainImage {
+  height: 100vh;
+  background-image: url('../../assets/bg.jpg');
+  background-position: center;
+  background-size: cover;
+  min-width: 431px;
+  min-height: 500px;
+}

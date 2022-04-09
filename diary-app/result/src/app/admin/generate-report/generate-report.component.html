@@ -1,0 +1,62 @@
+<mat-card class="manage-admin-card">
+  <mat-card-header>
+    <mat-card-title>GENERATE REPORT
+      <mat-button-toggle-group [(value)]="params.period" (click)="updateReport();" style="margin: 0 15px">
+        <mat-button-toggle value="MONTH" >
+          Monthly
+        </mat-button-toggle>
+        <mat-button-toggle value="WEEK">
+          Weekly
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+      <mat-form-field  style="margin: 0 15px">
+        <mat-label>Start Date</mat-label>
+        <input matInput required (dateChange)="updateReport();" [matDatepicker]="dp" [(ngModel)]="params.startDate">
+        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+        <mat-datepicker #dp></mat-datepicker>
+      </mat-form-field>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="report" *ngIf="report">
+      <h3>SUMMARY DETAILS</h3>
+      <div *ngIf="report.totalOrders!=0">
+        <div class="row">
+          <div class="label">Total Orders</div>
+          <div  class="value">: {{report.totalOrders}}</div>
+        </div>
+        <div class="row">
+          <div class="label">Total Diaries Sold</div>
+          <div  class="value">: {{report.totalDiaries}}</div>
+        </div>
+        <div class="row">
+          <div class="label">Total Revenue from base price</div>
+          <div  class="value">: {{report.totalFromBase | currency}}</div>
+        </div>
+        <div class="row">
+          <div class="label">Total Revenue from paper color customization</div>
+          <div  class="value">: {{report.totalFromPaperColor | currency}}</div>
+        </div>
+        <div class="row">
+          <div class="label">Total Revenue from cover theme customization</div>
+          <div  class="value">: {{report.totalFromCoverTheme | currency}}</div>
+        </div>
+        <div class="row">
+          <div class="label">Total Revenue from paper type customization</div>
+          <div  class="value">: {{report.totalFromPaperType | currency}}</div>
+        </div>
+        <div class="row">
+          <div class="label">Total Revenue from customization</div>
+          <div  class="value">: {{report.totalFromCustomization | currency}}</div>
+        </div>
+        <div class="row">
+          <div class="label">Total Revenue Generated</div>
+          <div  class="value">: {{report.totalRevenue | currency}}</div>
+        </div>
+      </div>
+      <div *ngIf="report.totalOrders==0">
+        <h4>No Records Found</h4>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
